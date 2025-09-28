@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FindMentor — Hands-on coding mentorship</title>
+  <style>
+    :root{
+      --navy:#0b2545;
+      --teal:#2bb3a3;
+      --white:#ffffff;
+      --radius:14px;
+      --shadow:0 12px 30px rgba(11,37,69,0.12);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto;
+      background:var(--navy);
+      color:var(--white);
+      line-height:1.6;
+      padding:32px 20px;
+      display:flex;
+      justify-content:center;
+    }
+    .container{max-width:1000px;width:100%}
+    header{text-align:center;margin-bottom:28px}
+    .logo{font-weight:800;font-size:2rem}
+    .tagline{font-size:1rem;opacity:.85;margin-top:4px}
+    .hero{text-align:center;margin-bottom:40px}
+    h1{font-size:2.4rem;margin-bottom:14px;font-weight:800}
+    p.lead{color:rgba(255,255,255,0.9);margin-bottom:20px;font-size:1.2rem}
+    .primary-cta{
+      background:var(--teal);
+      color:var(--white);
+      border:none;
+      padding:20px 32px;
+      border-radius:50px;
+      font-weight:800;
+      cursor:pointer;
+      font-size:1.2rem;
+      text-transform:uppercase;
+      width:100%;
+      max-width:420px;
+      margin:0 auto;
+      display:block;
+      box-shadow:0 6px 20px rgba(43,179,163,0.3);
+      transition:all .25s ease;
+    }
+    .primary-cta:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 10px 30px rgba(43,179,163,0.4)}
+    .problems{margin:50px auto;max-width:800px}
+    .problems h2{text-align:center;font-size:2rem;margin-bottom:24px;font-weight:800}
+    .problem-list{list-style:none;display:grid;gap:18px}
+    .problem-item{background:rgba(255,255,255,0.05);padding:18px 20px;border-radius:12px;display:flex;align-items:flex-start;gap:12px}
+    .problem-icon{font-size:1.4rem;flex-shrink:0}
+    .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin:40px 0}
+    .feature{background:rgba(255,255,255,0.05);padding:20px;border-radius:var(--radius);text-align:center;transition:.2s}
+    .feature:hover{background:rgba(255,255,255,0.1);transform:translateY(-4px)}
+    .feature-icon{font-size:2rem;margin-bottom:12px}
+    .howitworks{margin:60px auto;max-width:900px;text-align:center}
+    .howitworks h2{font-size:2rem;font-weight:800;margin-bottom:28px}
+    .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+    .step{background:rgba(255,255,255,0.05);padding:24px;border-radius:var(--radius);transition:.2s}
+    .step:hover{background:rgba(255,255,255,0.1);transform:translateY(-4px)}
+    .step-icon{font-size:2rem;margin-bottom:12px}
+    .step h4{font-size:1.2rem;font-weight:700;margin-bottom:8px}
+    .card{
+      background:var(--white);
+      color:var(--navy);
+      border-radius:var(--radius);
+      padding:36px;
+      box-shadow:var(--shadow);
+      max-width:720px;
+      margin:0 auto;
+      text-align:center;
+    }
+    .card h3{margin-bottom:16px;font-size:1.6rem;font-weight:800}
+    form > div{margin-bottom:22px;text-align:left}
+    label{display:block;font-weight:700;font-size:.9rem;margin-bottom:6px}
+    input[type="email"], textarea{
+      width:100%;
+      padding:14px;
+      border-radius:10px;
+      border:2px solid rgba(11,37,69,0.1);
+      font-size:1rem;
+      resize:vertical;
+      transition:.2s;
+    }
+    input[type="email"]:focus, textarea:focus{border-color:var(--teal);outline:none}
+    .checkbox-group, .role-group{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:10px;
+      margin-top:8px;
+    }
+    .checkbox-item, .role-item{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      background:#f7fafa;
+      padding:12px;
+      border-radius:10px;
+      font-weight:600;
+      cursor:pointer;
+      transition:.2s;
+    }
+    .checkbox-item:hover, .role-item:hover{background:#eef7f6}
+    .submit{
+      background:var(--teal);
+      color:var(--white);
+      border:none;
+      padding:20px;
+      border-radius:50px;
+      font-weight:800;
+      font-size:1.2rem;
+      cursor:pointer;
+      width:100%;
+      text-transform:uppercase;
+      box-shadow:0 6px 20px rgba(43,179,163,0.3);
+      transition:all .25s ease;
+    }
+    .submit:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 10px 30px rgba(43,179,163,0.4)}
+    .thank{
+      display:none;
+      background:rgba(43,179,163,0.1);
+      padding:30px;
+      border-radius:12px;
+      font-weight:600;
+      font-size:1.2rem;
+    }
+    .thank.show{display:block}
+    footer{text-align:center;color:rgba(255,255,255,0.7);margin-top:50px;font-size:.9rem}
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="logo">FindMentor</div>
+    <div class="tagline">Hands-on mentorship for real coding problems</div>
+  </header>
+
+  <section class="hero">
+    <h1>Learn by doing with developers who guide you through your code</h1>
+    <p class="lead">Stop watching endless tutorials. Start solving your actual problems with mentors who teach as you build.</p>
+    <button class="primary-cta" id="jumpToForm">🚀 Join the beta waitlist</button>
+  </section>
+
+  <!-- Problems section -->
+  <section class="problems">
+    <h2>Why FindMentor?</h2>
+    <ul class="problem-list">
+      <li class="problem-item"><span class="problem-icon">💡</span><span>You get stuck on specific topics, but tutorials only skim the surface.</span></li>
+      <li class="problem-item"><span class="problem-icon">📚</span><span>Courses feel too generic — you want targeted study on your own project or topic.</span></li>
+      <li class="problem-item"><span class="problem-icon">🤝</span><span>You’d rather learn alongside an experienced dev than struggle alone.</span></li>
+      <li class="problem-item"><span class="problem-icon">⚡</span><span>You want feedback, reviews, and real-time guidance that makes concepts stick.</span></li>
+    </ul>
+  </section>
+
+  <!-- Features section -->
+  <section class="features">
+    <div class="feature">
+      <div class="feature-icon">🎯</div>
+      <h4>Personalized Learning</h4>
+      <p>Get study help shaped around your project or topic, not one-size-fits-all tutorials.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">⚡</div>
+      <h4>Learn by Doing</h4>
+      <p>Solve actual problems side-by-side with mentors, so the concepts stick long-term.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🌱</div>
+      <h4>Grow Continuously</h4>
+      <p>Build relationships with mentors who can guide your journey beyond one issue.</p>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="howitworks">
+    <h2>How it Works</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-icon">📝</div>
+        <h4>1. Post your challenge</h4>
+        <p>Describe the coding problem or topic you want to master.</p>
+      </div>
+      <div class="step">
+        <div class="step-icon">📩</div>
+        <h4>2. Mentors pitch solutions</h4>
+        <p>Experienced developers send short proposals on how they’ll help.</p>
+      </div>
+      <div class="step">
+        <div class="step-icon">🚀</div>
+        <h4>3. Learn hands-on</h4>
+        <p>Work through the problem together and gain practical skills that stick.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Signup / Thank You Card -->
+  <section class="card" id="signupForm">
+    <div id="formWrapper">
+      <h3>Reserve your beta access</h3>
+      <p style="margin-bottom:20px;color:#333">Be among the first learners to connect with mentors who teach hands-on through your real coding challenges.</p>
+      <form id="waitlistForm" action="https://formspree.io/f/mqayevnn" method="POST" onsubmit="handleSubmit(event)">
+        <div>
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required placeholder="you@company.com">
+        </div>
+
+        <div>
+          <label>I am primarily interested in...</label>
+          <div class="role-group">
+            <label class="role-item"><input type="checkbox" name="role[]" value="mentee"> Finding a mentor</label>
+            <label class="role-item"><input type="checkbox" name="role[]" value="mentor"> Becoming a mentor</label>
+          </div>
+        </div>
+
+        <div>
+          <label>Tech areas I'm interested in</label>
+          <div class="checkbox-group">
+            <label class="checkbox-item"><input type="checkbox" name="tech[]" value="Frontend"> Frontend (React, Vue, Angular)</label>
+            <label class="checkbox-item"><input type="checkbox" name="tech[]" value="Backend"> Backend (Node, Python, Java)</label>
+            <label class="checkbox-item"><input type="checkbox" name="tech[]" value="Fullstack"> Full-stack Development</label>
+            <label class="checkbox-item"><input type="checkbox" name="tech[]" value="Mobile"> Mobile (React Native, Flutter)</label>
+            <label class="checkbox-item"><input type="checkbox" name="tech[]" value="DevOps"> DevOps & Cloud</label>
+            <label class="checkbox-item"><input type="checkbox" name="tech[]" value="DataScience"> Data Science & ML</label>
+            <label class="checkbox-item"><input type="checkbox" name="tech[]" value="SystemDesign"> System Design</label>
+            <label class="checkbox-item"><input type="checkbox" name="tech[]" value="Career"> Career Guidance</label>
+          </div>
+        </div>
+
+        <div>
+          <label for="challenge">What's your biggest coding challenge right now? <span style="font-weight:400;color:#555">(optional)</span></label>
+          <textarea id="challenge" name="challenge" placeholder="e.g. I can build basic apps but struggle with state management and API integration"></textarea>
+        </div>
+
+        <input type="hidden" name="source" value="landing-page">
+        <input type="hidden" name="timestamp" id="timestamp">
+
+        <button type="submit" class="submit" id="submitBtn">Reserve my spot</button>
+      </form>
+    </div>
+
+    <div id="thankBox" class="thank">🎉 You’re on the waitlist!</div>
+  </section>
+
+  <footer>&copy; <span id="year"></span> FindMentor — sb.bhutani12@gmail.com</footer>
+</div>
+
+<script>
+  let waitlistCount=412;
+  const year=document.getElementById('year');
+  year.textContent=new Date().getFullYear();
+
+  document.getElementById('jumpToForm').onclick=()=>{document.getElementById('signupForm').scrollIntoView({behavior:'smooth'})};
+
+  // Check localStorage for prior submission
+  window.addEventListener('DOMContentLoaded', ()=>{
+    if(localStorage.getItem('fm_submitted')==='true'){
+      document.getElementById('formWrapper').style.display='none';
+      document.getElementById('thankBox').classList.add('show');
+    }
+  });
+
+  function handleSubmit(e){
+    e.preventDefault();
+    document.getElementById('timestamp').value=new Date().toISOString();
+    const form=document.getElementById('waitlistForm');
+    const submitBtn=document.getElementById('submitBtn');
+    submitBtn.textContent='Joining…';
+    submitBtn.disabled=true;
+
+    fetch(form.action,{
+      method:'POST',
+      body:new FormData(form),
+      headers:{'Accept':'application/json'}
+    }).then(r=>{
+      if(r.ok){
+        // Save state to localStorage
+        localStorage.setItem('fm_submitted','true');
+
+        // Swap to thank you
+        document.getElementById('formWrapper').style.display='none';
+        document.getElementById('thankBox').classList.add('show');
+      }else throw new Error('Submit failed');
+    }).catch(err=>{
+      alert('Error, try again later');
+      console.error(err);
+    }).finally(()=>{
+      submitBtn.disabled=false;
+      submitBtn.textContent='Reserve my spot';
+    });
+  }
+</script>
+</body>
+</html>
